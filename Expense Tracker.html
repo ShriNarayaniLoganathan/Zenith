@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: bookman-old-style, bookman-old-style;
+            background: url("C:\Users\hp\OneDrive\Desktop\Zenith\Zenith\login image.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .active {
+            opacity: 1;
+        }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .settings {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container" id="loginContainer" style="display:none;">
+        <h2>Login / Sign Up</h2>
+        <form id="loginForm">
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="#" id="signUpLink">Sign Up</a></p>
+        </form>
+    </div>
+    
+    <div class="settings" id="settingsPage">
+        <h2>Settings</h2>
+        <form>
+            <label for="currency">Currency:</label>
+            <select id="currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="INR">INR</option>
+                <option value="CAD">CAD</option>
+                <option value="AUD">AUD</option>
+                <option value="JPY">YEN</option>
+            </select>
+            <label for="language">Language:</label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="tm">Tamil</option>
+            </select>
+            <label>
+                <input type="checkbox" id="notifications"> Enable Notifications
+            </label>
+            <button type="submit">Save Settings</button>
+        </form>
+    </div>
+
+<div class="slideshow">
+    <div class="slide active" id="logoSlide">
+        <img src="C:\Users\hp\OneDrive\Desktop\Zenith\Zenith\IMG-20250208-WA0008.jpg" alt="Logo" style="width:100%; height:auto;">
+    </div>
+    <div class="slide" id="welcomeSlide">
+        <h1>Your Journey to Better Spending Starts Here - Welcome to SmartSpend!</h1>
+        <img src="C:\Users\hp\OneDrive\Desktop\Zenith\Zenith\welcome.jpg" alt="Welcome" style="width:100%; height:auto;">
+    </div>
+</div>
+
+
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const loginContainer = document.getElementById('loginContainer');
+    const settingsPage = document.getElementById('settingsPage');
+
+    function showSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            showSlide(currentSlide + 1);
+        } else {
+            clearInterval(slideshowInterval);
+            loginContainer.style.display = 'flex';
+        }
+    }
+
+    const slideshowInterval = setInterval(nextSlide, 5000);
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Simulate login
+        if (true) { // Replace with actual login logic
+            loginContainer.style.display = 'none';
+            settingsPage.style.display = 'block';
+        }
+    });
+
+    document.getElementById('signUpLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Add sign-up logic here
+    });
+</script>
+
+</body>
+</html>
